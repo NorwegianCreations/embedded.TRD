@@ -9,7 +9,7 @@
 // origin: bottom left of drawing surface
 
 // delete or mark the next line as comment when done with calibration  
-//#define CALIBRATION
+#define CALIBRATION
 
 // When in calibration mode, adjust the following factor until the servos move exactly 90 degrees
 #define SERVOFAKTOR 600
@@ -20,9 +20,9 @@
 #define SERVOLEFTNULL 2050
 #define SERVORIGHTNULL 520
 
-#define SERVOPINLIFT  2
-#define SERVOPINLEFT  3
-#define SERVOPINRIGHT 4
+#define SERVOPINLIFT  3
+#define SERVOPINLEFT  5
+#define SERVOPINRIGHT 8
 
 // lift positions of lifting servo
 #define LIFT0 1350 // on drawing surface
