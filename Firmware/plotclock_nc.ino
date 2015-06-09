@@ -37,23 +37,20 @@
 #define L2 55.1
 #define L3 13.2
 
-
 // origin points of left and right servo 
 #define O1X 22
 #define O1Y -25
 #define O2X 47
 #define O2Y -25
 
-
-
 //#include <Time.h> // see http://playground.arduino.cc/Code/time 
 #include <Servo.h>
 
 int servoLift = 1500;
 
-Servo servo1;  // 
-Servo servo2;  // 
-Servo servo3;  // 
+Servo servo1;
+Servo servo2;
+Servo servo3;
 
 volatile double lastX = 75;
 volatile double lastY = 47.5;
@@ -105,7 +102,7 @@ void loop()
     servo3.detach();
   }
 
-#endif
+#endif //CALIBRATION
 
 } 
 
@@ -181,7 +178,6 @@ void number(float bx, float by, int num, float scale) {
     bogenGZS(bx + 5 * scale, by + 5 * scale, 5 * scale, -4.7, 2, 1);
     lift(1);
     break;
-
   case 9:
     drawTo(bx + 9 * scale, by + 11 * scale);
     lift(0);
@@ -196,14 +192,11 @@ void number(float bx, float by, int num, float scale) {
   }
 }
 
-
-
 void lift(char lift) {
   switch (lift) {
-    // room to optimize  !
+    // room to optimize!
 
   case 0: //850
-
       if (servoLift >= LIFT0) {
       while (servoLift >= LIFT0) 
       {
@@ -217,21 +210,16 @@ void lift(char lift) {
         servoLift++;
         servo1.writeMicroseconds(servoLift);
         delayMicroseconds(LIFTSPEED);
-
       }
-
     }
-
     break;
 
   case 1: //150
-
     if (servoLift >= LIFT1) {
       while (servoLift >= LIFT1) {
         servoLift--;
         servo1.writeMicroseconds(servoLift);
         delayMicroseconds(LIFTSPEED);
-
       }
     } 
     else {
@@ -240,13 +228,10 @@ void lift(char lift) {
         servo1.writeMicroseconds(servoLift);
         delayMicroseconds(LIFTSPEED);
       }
-
     }
-
     break;
 
   case 2:
-
     if (servoLift >= LIFT2) {
       while (servoLift >= LIFT2) {
         servoLift--;
@@ -336,7 +321,7 @@ void set_XY(double Tx, double Ty)
 
   servo2.writeMicroseconds(floor(((a2 + a1 - M_PI) * SERVOFAKTOR) + SERVOLEFTNULL));
 
-  // calculate joinr arm point for triangle of the right servo arm
+  // calculate joint arm point for triangle of the right servo arm
   a2 = return_angle(L2, L1, c);
   Hx = Tx + L3 * cos((a1 - a2 + 0.621) + M_PI); //36,5°
   Hy = Ty + L3 * sin((a1 - a2 + 0.621) + M_PI);
@@ -350,5 +335,4 @@ void set_XY(double Tx, double Ty)
   a2 = return_angle(L1, (L2 - L3), c);
 
   servo3.writeMicroseconds(floor(((a1 - a2) * SERVOFAKTOR) + SERVORIGHTNULL));
-
 }
